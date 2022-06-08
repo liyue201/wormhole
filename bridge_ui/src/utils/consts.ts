@@ -15,6 +15,7 @@ import {
   CHAIN_ID_POLYGON,
   CHAIN_ID_SOLANA,
   CHAIN_ID_TERRA,
+  CHAIN_ID_BAS,
   isEVMChain,
 } from "@certusone/wormhole-sdk";
 import { clusterApiUrl } from "@solana/web3.js";
@@ -34,6 +35,7 @@ import oasisIcon from "../icons/oasis-network-rose-logo.svg";
 import polygonIcon from "../icons/polygon.svg";
 import solanaIcon from "../icons/solana.svg";
 import terraIcon from "../icons/terra.svg";
+import basIcon from "../icons/terra.svg";
 
 export type Cluster = "devnet" | "testnet" | "mainnet";
 export const CLUSTER: Cluster =
@@ -113,81 +115,86 @@ export const CHAINS: ChainInfo[] =
       ]
     : CLUSTER === "testnet"
     ? [
-        {
-          id: CHAIN_ID_ACALA,
-          name: "Acala",
-          logo: acalaIcon,
-        },
-        {
-          id: CHAIN_ID_ALGORAND,
-          name: "Algorand",
-          logo: algorandIcon,
-        },
-        {
-          id: CHAIN_ID_AURORA,
-          name: "Aurora",
-          logo: auroraIcon,
-        },
-        {
-          id: CHAIN_ID_AVAX,
-          name: "Avalanche",
-          logo: avaxIcon,
-        },
+        // {
+        //   id: CHAIN_ID_ACALA,
+        //   name: "Acala",
+        //   logo: acalaIcon,
+        // },
+        // {
+        //   id: CHAIN_ID_ALGORAND,
+        //   name: "Algorand",
+        //   logo: algorandIcon,
+        // },
+        // {
+        //   id: CHAIN_ID_AURORA,
+        //   name: "Aurora",
+        //   logo: auroraIcon,
+        // },
+        // {
+        //   id: CHAIN_ID_AVAX,
+        //   name: "Avalanche",
+        //   logo: avaxIcon,
+        // },
         {
           id: CHAIN_ID_BSC,
           name: "Binance Smart Chain",
           logo: bscIcon,
         },
-        {
-          id: CHAIN_ID_CELO,
-          name: "Celo",
-          logo: celoIcon,
-        },
+        // {
+        //   id: CHAIN_ID_CELO,
+        //   name: "Celo",
+        //   logo: celoIcon,
+        // },
         {
           id: CHAIN_ID_ETH,
           name: "Ethereum (Goerli)",
           logo: ethIcon,
         },
-        {
-          id: CHAIN_ID_ETHEREUM_ROPSTEN,
-          name: "Ethereum (Ropsten)",
-          logo: ethIcon,
-        },
-        {
-          id: CHAIN_ID_FANTOM,
-          name: "Fantom",
-          logo: fantomIcon,
-        },
-        {
-          id: CHAIN_ID_KARURA,
-          name: "Karura",
-          logo: karuraIcon,
-        },
-        {
-          id: CHAIN_ID_KLAYTN,
-          name: "Klaytn",
-          logo: klaytnIcon,
-        },
-        {
-          id: CHAIN_ID_OASIS,
-          name: "Oasis",
-          logo: oasisIcon,
-        },
-        {
-          id: CHAIN_ID_POLYGON,
-          name: "Polygon",
-          logo: polygonIcon,
-        },
+        // {
+        //   id: CHAIN_ID_ETHEREUM_ROPSTEN,
+        //   name: "Ethereum (Ropsten)",
+        //   logo: ethIcon,
+        // },
+        // {
+        //   id: CHAIN_ID_FANTOM,
+        //   name: "Fantom",
+        //   logo: fantomIcon,
+        // },
+        // {
+        //   id: CHAIN_ID_KARURA,
+        //   name: "Karura",
+        //   logo: karuraIcon,
+        // },
+        // {
+        //   id: CHAIN_ID_KLAYTN,
+        //   name: "Klaytn",
+        //   logo: klaytnIcon,
+        // },
+        // {
+        //   id: CHAIN_ID_OASIS,
+        //   name: "Oasis",
+        //   logo: oasisIcon,
+        // },
+        // {
+        //   id: CHAIN_ID_POLYGON,
+        //   name: "Polygon",
+        //   logo: polygonIcon,
+        // },
         {
           id: CHAIN_ID_SOLANA,
           name: "Solana",
           logo: solanaIcon,
         },
-        {
-          id: CHAIN_ID_TERRA,
-          name: "Terra",
-          logo: terraIcon,
-        },
+        // {
+        //   id: CHAIN_ID_TERRA,
+        //   name: "Terra",
+        //   logo: terraIcon,
+        // },
+          {
+              id: CHAIN_ID_BAS,
+              name: "BAS",
+              logo: basIcon,
+          },
       ]
     : [
         {
@@ -272,6 +279,8 @@ export const getDefaultNativeCurrencySymbol = (chainId: ChainId) =>
     ? "KLAY"
     : chainId === CHAIN_ID_CELO
     ? "CELO"
+    : chainId === CHAIN_ID_BAS
+      ? "OVR"
     : "";
 export const getExplorerName = (chainId: ChainId) =>
   chainId === CHAIN_ID_ETH || chainId === CHAIN_ID_ETHEREUM_ROPSTEN
@@ -302,7 +311,7 @@ export const WORMHOLE_RPC_HOSTS =
         "https://wormhole-v2-mainnet.01node.com",
       ]
     : CLUSTER === "testnet"
-    ? ["https://wormhole-v2-testnet-api.certus.one"]
+    ? ["http://45.63.34.238:7071"]
     : ["http://localhost:7071"];
 export const ETH_NETWORK_CHAIN_ID =
   CLUSTER === "mainnet" ? 1 : CLUSTER === "testnet" ? 5 : 1337;
@@ -332,6 +341,9 @@ export const KLAYTN_NETWORK_CHAIN_ID =
   CLUSTER === "mainnet" ? 8217 : CLUSTER === "testnet" ? 1001 : 1381;
 export const CELO_NETWORK_CHAIN_ID =
   CLUSTER === "mainnet" ? 42220 : CLUSTER === "testnet" ? 44787 : 1381;
+export const BAS_NETWORK_CHAIN_ID =
+    CLUSTER === "mainnet" ? 14000 : CLUSTER === "testnet" ? 14000 : 14000;
+
 export const getEvmChainId = (chainId: ChainId) =>
   chainId === CHAIN_ID_ETH
     ? ETH_NETWORK_CHAIN_ID
@@ -357,6 +369,8 @@ export const getEvmChainId = (chainId: ChainId) =>
     ? KLAYTN_NETWORK_CHAIN_ID
     : chainId === CHAIN_ID_CELO
     ? CELO_NETWORK_CHAIN_ID
+    : chainId === CHAIN_ID_BAS
+    ? BAS_NETWORK_CHAIN_ID
     : undefined;
 export const SOLANA_HOST = process.env.REACT_APP_SOLANA_API_URL
   ? process.env.REACT_APP_SOLANA_API_URL
@@ -419,42 +433,42 @@ export const ETH_BRIDGE_ADDRESS = getAddress(
   CLUSTER === "mainnet"
     ? "0x98f3c9e6E3fAce36bAAd05FE09d375Ef1464288B"
     : CLUSTER === "testnet"
-    ? "0x706abc4E45D419950511e474C7B9Ed348A4a716c"
+    ? "0xdF814331a20448F60dE16AA942d010C24022E43F"
     : "0xC89Ce4735882C9F0f0FE26686c53074E09B0D550"
 );
 export const ETH_NFT_BRIDGE_ADDRESS = getAddress(
   CLUSTER === "mainnet"
     ? "0x6FFd7EdE62328b3Af38FCD61461Bbfc52F5651fE"
     : CLUSTER === "testnet"
-    ? "0xD8E4C2DbDd2e2bd8F1336EA691dBFF6952B1a6eB"
+    ? "0x92E2d7b918636601B5eD93d19BA112154A91cc76"
     : "0x26b4afb60d6c903165150c6f0aa14f8016be4aec"
 );
 export const ETH_TOKEN_BRIDGE_ADDRESS = getAddress(
   CLUSTER === "mainnet"
     ? "0x3ee18B2214AFF97000D974cf647E7C347E8fa585"
     : CLUSTER === "testnet"
-    ? "0xF890982f9310df57d00f659cf4fd87e65adEd8d7"
+    ? "0x377743955cb199A0b03755d811dB8fe713a476f8"
     : "0x0290FB167208Af455bB137780163b7B7a9a10C16"
 );
 export const BSC_BRIDGE_ADDRESS = getAddress(
   CLUSTER === "mainnet"
     ? "0x98f3c9e6E3fAce36bAAd05FE09d375Ef1464288B"
     : CLUSTER === "testnet"
-    ? "0x68605AD7b15c732a30b1BbC62BE8F2A509D74b4D"
+    ? "0x9221EAb1e8d986CC9EE8a9F3EEAb2dF5c5a1DF91"
     : "0xC89Ce4735882C9F0f0FE26686c53074E09B0D550"
 );
 export const BSC_NFT_BRIDGE_ADDRESS = getAddress(
   CLUSTER === "mainnet"
     ? "0x5a58505a96D1dbf8dF91cB21B54419FC36e93fdE"
     : CLUSTER === "testnet"
-    ? "0xcD16E5613EF35599dc82B24Cb45B5A93D779f1EE"
+    ? "0x369D52A7752fb2370793865517a0c637EA1267d8"
     : "0x26b4afb60d6c903165150c6f0aa14f8016be4aec"
 );
 export const BSC_TOKEN_BRIDGE_ADDRESS = getAddress(
   CLUSTER === "mainnet"
     ? "0xB6F6D86a8f9879A9c87f643768d9efc38c1Da6E7"
     : CLUSTER === "testnet"
-    ? "0x9dcF9D205C9De35334D646BeE44b2D2859712A09"
+    ? "0xE2D45923A79D16D6920fF4f3e51e4794e2b579f6"
     : "0x0290FB167208Af455bB137780163b7B7a9a10C16"
 );
 export const POLYGON_BRIDGE_ADDRESS = getAddress(
@@ -650,19 +664,19 @@ export const SOL_BRIDGE_ADDRESS =
   CLUSTER === "mainnet"
     ? "worm2ZoG2kUd4vFXhvjh93UUH596ayRfgQ2MgjNMTth"
     : CLUSTER === "testnet"
-    ? "3u8hJUVTA4jH1wYAyUur7FFZVQ8H635K3tSHHF4ssjQ5"
+    ? "7izWzS4CxwGnyihtjiBfVpgQ7dyR8UmoJ6TiEqrhLbb5"
     : "Bridge1p5gheXUvJ6jGWGeCsgPKgnE3YgdGKRVCMY9o";
 export const SOL_NFT_BRIDGE_ADDRESS =
   CLUSTER === "mainnet"
     ? "WnFt12ZrnzZrFZkt2xsNsaNWoQribnuQ5B5FrDbwDhD"
     : CLUSTER === "testnet"
-    ? "2rHhojZ7hpu1zA91nvZmT8TqWWvMcKmmNBCr2mKTtMq4"
+    ? "3SSz94Z9tp6psLmmGre4RmBSorpCiTcEpduYVVH99jSj"
     : "NFTWqJR8YnRVqPDvTJrYuLrQDitTG5AScqbeghi4zSA";
 export const SOL_TOKEN_BRIDGE_ADDRESS =
   CLUSTER === "mainnet"
     ? "wormDTUJ6AWPNvk59vGQbDvGJmqbDTdgWgAqcLBCgUb"
     : CLUSTER === "testnet"
-    ? "DZnkkTmCiFWfYTfT41X3Rd1kDgozqzxWaHqsw6W4x2oe"
+    ? "7oJZZwJRDnH2kWdw77AGsEooHKvQJH9U7DcmmKMZpe4"
     : "B6RHG3mfcckmrYN1UhmJzyS1XX3fZKbkeUcpJe9Sy3FE";
 export const ROPSTEN_ETH_BRIDGE_ADDRESS = getAddress(
   CLUSTER === "mainnet"
@@ -685,6 +699,27 @@ export const ROPSTEN_ETH_TOKEN_BRIDGE_ADDRESS = getAddress(
     ? "0xF174F9A837536C449321df1Ca093Bb96948D5386"
     : "0x0290FB167208Af455bB137780163b7B7a9a10C16"
 );
+
+export const BAS_BRIDGE_ADDRESS =
+    CLUSTER === "mainnet"
+        ? "0x98fdd30102cB8Dc8d62dD66E88D66Bf1C43c5A50"
+        : CLUSTER === "testnet"
+            ? "0x98fdd30102cB8Dc8d62dD66E88D66Bf1C43c5A50"
+            : "0x98fdd30102cB8Dc8d62dD66E88D66Bf1C43c5A50";
+
+export const BAS_TOKEN_BRIDGE_ADDRESS =
+    CLUSTER === "mainnet"
+        ? "0x42d81210CC5059d5Be68A3154E0DD5E58259176e"
+        : CLUSTER === "testnet"
+            ? "0x42d81210CC5059d5Be68A3154E0DD5E58259176e"
+            : "0x42d81210CC5059d5Be68A3154E0DD5E58259176e";
+
+export const BAS_NFT_BRIDGE_ADDRESS =
+    CLUSTER === "mainnet"
+        ? "0x1c4377588B5960Ed29268a1BcB32F87D7Ff9CdE6"
+        : CLUSTER === "testnet"
+            ? "0x1c4377588B5960Ed29268a1BcB32F87D7Ff9CdE6"
+            : "0x1c4377588B5960Ed29268a1BcB32F87D7Ff9CdE6";
 
 export const SOL_CUSTODY_ADDRESS =
   "GugU1tP7doLeTw9hQP51xRJyS8Da1fWxuiy2rVrnMD2m";
@@ -742,6 +777,8 @@ export const getBridgeAddressForChain = (chainId: ChainId) =>
     ? KLAYTN_BRIDGE_ADDRESS
     : chainId === CHAIN_ID_CELO
     ? CELO_BRIDGE_ADDRESS
+    : chainId === CHAIN_ID_BAS
+    ? BAS_BRIDGE_ADDRESS
     : "";
 export const getNFTBridgeAddressForChain = (chainId: ChainId) =>
   chainId === CHAIN_ID_SOLANA
@@ -770,6 +807,8 @@ export const getNFTBridgeAddressForChain = (chainId: ChainId) =>
     ? KLAYTN_NFT_BRIDGE_ADDRESS
     : chainId === CHAIN_ID_CELO
     ? CELO_NFT_BRIDGE_ADDRESS
+    : chainId === CHAIN_ID_BAS
+    ? BAS_NFT_BRIDGE_ADDRESS
     : "";
 export const getTokenBridgeAddressForChain = (chainId: ChainId) =>
   chainId === CHAIN_ID_SOLANA
@@ -800,6 +839,8 @@ export const getTokenBridgeAddressForChain = (chainId: ChainId) =>
     ? KLAYTN_TOKEN_BRIDGE_ADDRESS
     : chainId === CHAIN_ID_CELO
     ? CELO_TOKEN_BRIDGE_ADDRESS
+    : chainId === CHAIN_ID_BAS
+    ? BAS_TOKEN_BRIDGE_ADDRESS
     : "";
 
 export const COVALENT_API_KEY = process.env.REACT_APP_COVALENT_API_KEY
@@ -866,7 +907,7 @@ export const WETH_ADDRESS =
   CLUSTER === "mainnet"
     ? "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2"
     : CLUSTER === "testnet"
-    ? "0xb4fbf271143f4fbf7b91a5ded31805e42b2208d6"
+    ? "0xFCFE4Ff1006A7721cee870B56ee2B5c250AeC13b"
     : "0xDDb64fE46a91D46ee29420539FC25FD07c5FEa3E";
 export const WETH_DECIMALS = 18;
 
@@ -874,9 +915,18 @@ export const WBNB_ADDRESS =
   CLUSTER === "mainnet"
     ? "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c"
     : CLUSTER === "testnet"
-    ? "0xae13d989dac2f0debff460ac112a837c89baa7cd"
+    ? "0x568bC72B9824558637E4a9C5A94b18b663536840"
     : "0xDDb64fE46a91D46ee29420539FC25FD07c5FEa3E";
 export const WBNB_DECIMALS = 18;
+
+export const WOVR_ADDRESS =
+    CLUSTER === "mainnet"
+        ? "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c"
+        : CLUSTER === "testnet"
+            ? "0x5CDABf4AF1D480fd6069Bd0AB4F4E46D93dFd4AD"
+            : "0xDDb64fE46a91D46ee29420539FC25FD07c5FEa3E";
+
+export const WOVR_DECIMALS = 18;
 
 export const WMATIC_ADDRESS =
   CLUSTER === "mainnet"
@@ -1391,4 +1441,5 @@ export const COLOR_BY_CHAIN_ID: { [key in ChainId]?: string } = {
   [CHAIN_ID_FANTOM]: "#1969FF",
   [CHAIN_ID_KARURA]: "#FF4B3B",
   [CHAIN_ID_ACALA]: "#E00F51",
+  [CHAIN_ID_BAS]: "#E00F51",
 };

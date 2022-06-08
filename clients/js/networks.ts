@@ -90,6 +90,10 @@ const MAINNET = {
     rpc: `https://ropsten.infura.io/v3/${get_env_var("INFURA_KEY")}`,
     key: get_env_var("ETH_KEY"),
   },
+  bas: {
+    rpc: undefined,
+    key: undefined,
+  },
 };
 
 const TESTNET = {
@@ -99,7 +103,7 @@ const TESTNET = {
   },
   solana: {
     rpc: "https://api.devnet.solana.com",
-    key: get_env_var("SOLANA_KEY"),
+    key: "4sSoRkZCopw1CkaUFP5vnrZNCuw89mncrUWxKRhjVdosSRXTfiWhQgM1NF7thNrN2atjHUDu82YTX628tdmKEgwm",
   },
   terra: {
     rpc: "https://bombay-lcd.terra.dev",
@@ -164,6 +168,10 @@ const TESTNET = {
   },  
   ropsten: {
     rpc: `https://ropsten.infura.io/v3/${get_env_var("INFURA_KEY")}`,
+    key: get_env_var("ETH_KEY"),
+  },
+  bas: {
+    rpc: "https://dev-bas.dev.overeality.io:8545",
     key: get_env_var("ETH_KEY"),
   },
 };
@@ -239,6 +247,10 @@ const DEVNET = {
     key: undefined,
   },  
   ropsten: {
+    rpc: undefined,
+    key: undefined,
+  },
+  bas: {
     rpc: undefined,
     key: undefined,
   },

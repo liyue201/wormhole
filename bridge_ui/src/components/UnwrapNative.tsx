@@ -5,6 +5,7 @@ import {
   CHAIN_ID_FANTOM,
   CHAIN_ID_OASIS,
   CHAIN_ID_POLYGON,
+  CHAIN_ID_BAS,
   MockWETH9__factory,
 } from "@certusone/wormhole-sdk";
 import {
@@ -48,6 +49,8 @@ import {
   WMATIC_DECIMALS,
   WROSE_ADDRESS,
   WROSE_DECIMALS,
+  WOVR_ADDRESS,
+  WOVR_DECIMALS,
 } from "../utils/consts";
 import parseError from "../utils/parseError";
 import ButtonWithLoader from "./ButtonWithLoader";
@@ -123,6 +126,12 @@ const supportedTokens = {
     icon: fantomIcon,
     address: WFTM_ADDRESS,
     decimals: WFTM_DECIMALS,
+  },
+  [CHAIN_ID_BAS]: {
+    symbol: "WOVR",
+    icon: bnbIcon,
+    address: WOVR_ADDRESS,
+    decimals: WOVR_DECIMALS,
   },
 } as const;
 

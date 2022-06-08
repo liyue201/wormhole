@@ -49,7 +49,7 @@ module.exports = {
         );
       },
       network_id: "5",
-      gas: 4465030,
+      gas: 8000000,
       gasPrice: 10000000000,
     },
     binance: {
@@ -67,11 +67,16 @@ module.exports = {
       provider: () =>
         new HDWalletProvider(
           process.env.MNEMONIC,
-          "https://data-seed-prebsc-1-s1.binance.org:8545/"
+          "https://data-seed-prebsc-2-s3.binance.org:8545/"
         ),
       network_id: "97",
-      gas: 70000000,
-      gasPrice: 8000000000,
+      gas: 10000000,
+      gasPrice: 10000000000,
+
+      confirmations: 3,
+      networkCheckTimeout: 1000000,
+      timeoutBlocks: 200,
+      skipDryRun: true,
     },
     polygon: {
       provider: () => {
@@ -271,7 +276,18 @@ module.exports = {
       network_id: 1287,
       gasPrice: 3000000000, // 3.0 gwei
       timeoutBlocks: 15000,
-    },    
+    },
+    bas_testnet: {
+      provider: () => {
+        return new HDWalletProvider(
+            process.env.MNEMONIC,
+            "https://dev-bas.dev.overeality.io:8545/"
+        );
+      },
+      network_id: 17243,
+      gasPrice: 1000000000,
+      networkCheckTimeouti: 6000000
+    },
   },
 
   compilers: {
@@ -285,6 +301,7 @@ module.exports = {
       },
     },
   },
+
 
   plugins: ["@chainsafe/truffle-plugin-abigen", "truffle-plugin-verify"],
 

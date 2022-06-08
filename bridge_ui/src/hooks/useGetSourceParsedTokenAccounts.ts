@@ -5,6 +5,7 @@ import {
   CHAIN_ID_AURORA,
   CHAIN_ID_AVAX,
   CHAIN_ID_BSC,
+  CHAIN_ID_BAS,
   CHAIN_ID_CELO,
   CHAIN_ID_ETH,
   CHAIN_ID_ETHEREUM_ROPSTEN,
@@ -108,6 +109,8 @@ import {
   WMATIC_DECIMALS,
   WROSE_ADDRESS,
   WROSE_DECIMALS,
+  WOVR_ADDRESS,
+  WOVR_DECIMALS,
 } from "../utils/consts";
 import {
   ExtractedMintInfo,
@@ -518,6 +521,29 @@ const createNativeCeloParsedTokenAccount = (
             celoIcon,
             false //isNativeAsset
           );
+        });
+};
+
+const createNativeBasParsedTokenAccount = (
+    provider: Provider,
+    signerAddress: string | undefined
+) => {
+    return !(provider && signerAddress)
+        ? Promise.reject()
+        : provider.getBalance(signerAddress).then((balanceInWei) => {
+            const balanceInEth = ethers.utils.formatEther(balanceInWei);
+            return createParsedTokenAccount(
+                signerAddress, //public key
+                WOVR_ADDRESS, //Mint key, On the other side this will be WBNB, so this is hopefully a white lie.
+                balanceInWei.toString(), //amount, in wei
+                WOVR_DECIMALS, //Luckily both BNB and WBNB have 18 decimals, so this should not be an issue.
+                parseFloat(balanceInEth), //This loses precision, but is a limitation of the current datamodel. This field is essentially deprecated
+                balanceInEth.toString(), //This is the actual display field, which has full precision.
+                "OVR", //A white lie for display purposes
+                "BAS Coin", //A white lie for display purposes
+                bnbIcon,
+                true //isNativeAsset
+            );
         });
 };
 
@@ -1002,6 +1028,40 @@ function useGetAvailableTokens(nft: boolean = false) {
       cancelled = true;
     };
   }, [lookupChain, provider, signerAddress, nft, ethNativeAccount]);
+
+    //BAS Chain native asset load
+    useEffect(() => {
+        let cancelled = false;
+        if (
+            signerAddress &&
+            lookupChain === CHAIN_ID_BAS &&
+            !ethNativeAccount &&
+            !nft
+        ) {
+            setEthNativeAccountLoading(true);
+            createNativeBasParsedTokenAccount(provider, signerAddress).then(
+                (result) => {
+                    console.log("create native account returned with value", result);
+                    if (!cancelled) {
+                        setEthNativeAccount(result);
+                        setEthNativeAccountLoading(false);
+                        setEthNativeAccountError("");
+                    }
+                },
+                (error) => {
+                    if (!cancelled) {
+                        setEthNativeAccount(undefined);
+                        setEthNativeAccountLoading(false);
+                        setEthNativeAccountError("Unable to retrieve your OVR balance.");
+                    }
+                }
+            );
+        }
+
+        return () => {
+            cancelled = true;
+        };
+    }, [lookupChain, provider, signerAddress, nft, ethNativeAccount]);
 
   //Polygon native asset load
   useEffect(() => {

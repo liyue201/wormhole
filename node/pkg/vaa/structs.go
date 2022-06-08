@@ -195,6 +195,9 @@ const (
 	// ChainIDMoonbeam is the ChainID of Moonbeam
 	ChainIDMoonbeam ChainID = 16
 
+	// ChainIDBAS is the ChainID of BAS
+	ChainIDBAS ChainID = 17
+
 	// ChainIDEthereumRopsten is the ChainID of Ethereum Ropsten
 	ChainIDEthereumRopsten ChainID = 10001
 

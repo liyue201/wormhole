@@ -16,6 +16,7 @@ export const CHAINS = {
   celo: 14,
   near: 15,
   moonbeam: 16,
+  bas: 17,
   ropsten: 10001,
 } as const;
 
@@ -39,7 +40,8 @@ export type EVMChainName =
   | "klaytn"
   | "celo"
   | "moonbeam"
-  | "ropsten";
+  | "ropsten"
+  | "bas";
 
 export type Contracts = {
   core: string | undefined;
@@ -136,8 +138,13 @@ const MAINNET = {
     core: undefined,
     token_bridge: undefined,
     nft_bridge: undefined,
-  },  
+  },
   ropsten: {
+    core: undefined,
+    token_bridge: undefined,
+    nft_bridge: undefined,
+  },
+  bas: {
     core: undefined,
     token_bridge: undefined,
     nft_bridge: undefined,
@@ -151,9 +158,9 @@ const TESTNET = {
     nft_bridge: undefined,
   },
   solana: {
-    core: "3u8hJUVTA4jH1wYAyUur7FFZVQ8H635K3tSHHF4ssjQ5",
-    token_bridge: "DZnkkTmCiFWfYTfT41X3Rd1kDgozqzxWaHqsw6W4x2oe",
-    nft_bridge: "2rHhojZ7hpu1zA91nvZmT8TqWWvMcKmmNBCr2mKTtMq4",
+    core: "7izWzS4CxwGnyihtjiBfVpgQ7dyR8UmoJ6TiEqrhLbb5",
+    token_bridge: "7oJZZwJRDnH2kWdw77AGsEooHKvQJH9U7DcmmKMZpe4",
+    nft_bridge: "3SSz94Z9tp6psLmmGre4RmBSorpCiTcEpduYVVH99jSj",
   },
   terra: {
     core: "terra1pd65m0q9tl3v8znnz5f5ltsfegyzah7g42cx5v",
@@ -161,14 +168,14 @@ const TESTNET = {
     nft_bridge: undefined,
   },
   ethereum: {
-    core: "0x706abc4E45D419950511e474C7B9Ed348A4a716c",
-    token_bridge: "0xF890982f9310df57d00f659cf4fd87e65adEd8d7",
-    nft_bridge: "0xD8E4C2DbDd2e2bd8F1336EA691dBFF6952B1a6eB",
+    core: "0xdF814331a20448F60dE16AA942d010C24022E43F",
+    token_bridge: "0x377743955cb199A0b03755d811dB8fe713a476f8",
+    nft_bridge: "0x99fCc38C54265775F6576CbC6A8Df48b32b89F3D",
   },
   bsc: {
-    core: "0x68605AD7b15c732a30b1BbC62BE8F2A509D74b4D",
-    token_bridge: "0x9dcF9D205C9De35334D646BeE44b2D2859712A09",
-    nft_bridge: "0xcD16E5613EF35599dc82B24Cb45B5A93D779f1EE",
+    core: "0x9221EAb1e8d986CC9EE8a9F3EEAb2dF5c5a1DF91",
+    token_bridge: "0xE2D45923A79D16D6920fF4f3e51e4794e2b579f6",
+    nft_bridge: "0x369D52A7752fb2370793865517a0c637EA1267d8",
   },
   polygon: {
     core: "0x0CBE91CF822c73C2315FB05100C2F714765d5c20",
@@ -223,17 +230,22 @@ const TESTNET = {
   near: {
     core: undefined,
     token_bridge: undefined,
-    nft_bridge: undefined,    
+    nft_bridge: undefined,
   },
   moonbeam: {
     core: "0xa5B7D85a8f27dd7907dc8FdC21FA5657D5E2F901",
     token_bridge: "0xbc976D4b9D57E57c3cA52e1Fd136C45FF7955A96",
     nft_bridge: "0x98A0F4B96972b32Fcb3BD03cAeB66A44a6aB9Edb",
-  },    
+  },
   ropsten: {
     core: "0x210c5F5e2AF958B4defFe715Dc621b7a3BA888c5",
     token_bridge: "0xF174F9A837536C449321df1Ca093Bb96948D5386",
     nft_bridge: "0x2b048Da40f69c8dc386a56705915f8E966fe1eba",
+  },
+  bas: {
+    core: "0x98fdd30102cB8Dc8d62dD66E88D66Bf1C43c5A50",
+    token_bridge: "0x42d81210CC5059d5Be68A3154E0DD5E58259176e",
+    nft_bridge: "0x1c4377588B5960Ed29268a1BcB32F87D7Ff9CdE6",
   },
 };
 
@@ -322,8 +334,13 @@ const DEVNET = {
     core: undefined,
     token_bridge: undefined,
     nft_bridge: undefined,
-  },  
+  },
   ropsten: {
+    core: undefined,
+    token_bridge: undefined,
+    nft_bridge: undefined,
+  },
+  bas: {
     core: undefined,
     token_bridge: undefined,
     nft_bridge: undefined,
@@ -386,6 +403,7 @@ export const CHAIN_ID_CELO = CHAINS["celo"];
 export const CHAIN_ID_NEAR = CHAINS["near"];
 export const CHAIN_ID_MOONBEAM = CHAINS["moonbeam"];
 export const CHAIN_ID_ETHEREUM_ROPSTEN = CHAINS["ropsten"];
+export const CHAIN_ID_BAS = CHAINS["bas"];
 
 // This inverts the [[CHAINS]] object so that we can look up a chain by id
 export type ChainIdToName = {
@@ -493,7 +511,8 @@ export function isEVMChain(
     chainId === CHAIN_ID_KLAYTN ||
     chainId === CHAIN_ID_CELO ||
     chainId === CHAIN_ID_MOONBEAM ||
-    chainId === CHAIN_ID_ETHEREUM_ROPSTEN
+    chainId === CHAIN_ID_ETHEREUM_ROPSTEN ||
+    chainId === CHAIN_ID_BAS
   ) {
     return isEVM(chainId);
   } else {

@@ -174,7 +174,7 @@ func Run(obsvC chan *gossipv1.SignedObservation, obsvReqC chan *gossipv1.Observa
 
 		// TODO: continually reconnect to bootstrap nodes?
 		if successes == 0 && !bootstrapNode {
-			return fmt.Errorf("failed to connect to any bootstrap peer")
+			//return fmt.Errorf("failed to connect to any bootstrap peer")
 		} else {
 			logger.Info("Connected to bootstrap peers", zap.Int("num", successes))
 		}
