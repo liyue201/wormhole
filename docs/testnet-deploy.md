@@ -51,7 +51,7 @@ cp .env.bas.testnet .env
 npx truffle migrate --network bas_testnet --to 4
 ```
 
-## Deploy solana contracts
+### Deploy solana contracts
 
 Install solana tool
 ```
@@ -97,17 +97,17 @@ Deploy other contracts
 solana program deploy target/deploy//cpi_poster.so
  Program Id: FmVLwmeqWyCfeDuHTxR8UrfXb1vTHWH1AHttWuXW3XTU
 
-solana program deploy target/deploy//wormhole_migration.so
+solana program deploy target/deploy/wormhole_migration.so
  Program Id: 9r1k4n3imJmv1HxPQBB2SzniiBYKps8FXjPpYjYRtV5W
 
 solana program deploy modules/token_bridge/token-metadata/spl_token_metadata.so
  Program Id: FcK14TDw1FvMuD5zCHq2XbBjnMmBGHPfmxwzorASqodY
 
 
-solana program deploy artifacts-testnet/token_bridge.so
+solana program deploy target/deploy/token_bridge.so
  Program Id: 7oJZZwJRDnH2kWdw77AGsEooHKvQJH9U7DcmmKMZpe4
 
-solana program deploy artifacts-testnet/nft_bridge.so
+solana program deploy target/deploy/nft_bridge.so
  Program Id: 3SSz94Z9tp6psLmmGre4RmBSorpCiTcEpduYVVH99jSj
 
 ```
@@ -132,9 +132,9 @@ export INIT_SIGNERS_CSV=beFA429d57cD18b7F8A4d91A2da9AB4AF05d0FBe
 
 Get solana bridge emitter address
 ```
-./target/debug/token_bridge_client  emitter "$BRIDGE_ADDRESS"
-./target/debug/token_bridge_client  emitter "$TOKEN_BRIDGE_ADDRESS"
-./target/debug/token_bridge_client  emitter "$NFT_BRIDGE_ADDRESS"
+./target/release/token_bridge_client  emitter "$BRIDGE_ADDRESS"
+./target/release/token_bridge_client  emitter "$TOKEN_BRIDGE_ADDRESS"
+./target/release/token_bridge_client  emitter "$NFT_BRIDGE_ADDRESS"
 ```
 
 ## Build SDK
@@ -143,7 +143,7 @@ Update contracts address in `sdk/js/utils/consts.ts`
 
 ```
 DOCKER_BUILDKIT=1 docker build --target node-export  -f Dockerfile.proto -o type=local,dest=. .
-DOCKER_BUILDKIT=1 docker build --build-arg http_proxy=http://192.168.1.106:10809 -f solana/Dockerfile.wasm -o type=local,dest=. solana
+DOCKER_BUILDKIT=1 docker build -f solana/Dockerfile.wasm -o type=local,dest=. solana
 npm ci --prefix ethereum
 npm ci --prefix sdk/js
 npm run build --prefix sdk/js
