@@ -1,5 +1,14 @@
 # TestNet deployment guide
 
+## Prerequisites
+Deploying wormhole requires installing these dependencies
+
+- rust 1.61.0
+- npm 8.11.0
+- node v16.0.0
+- golang 1.17.8
+- docker 20.10.12
+
 ## Deploy contracts
 
 ### Set EVN
