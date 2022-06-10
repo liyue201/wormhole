@@ -79,12 +79,12 @@ cargo build-bpf --manifest-path "bridge/program/Cargo.toml" -- --locked
 Deploy core bridge
 ```
 solana program deploy target/deploy/bridge.so
-  Program Id: 7izWzS4CxwGnyihtjiBfVpgQ7dyR8UmoJ6TiEqrhLbb5
+  Program Id: GSJkPVPQdqaWayNBafwrDABfx2eetQnx6vudxr6WM8sg
 ```
 
 Build other contracts, set `BRIDGE_ADDRESS` to the returned `Program Id` of the deployment
 ```
-export BRIDGE_ADDRESS=7izWzS4CxwGnyihtjiBfVpgQ7dyR8UmoJ6TiEqrhLbb5
+export BRIDGE_ADDRESS=GSJkPVPQdqaWayNBafwrDABfx2eetQnx6vudxr6WM8sg
 cargo build-bpf --manifest-path "bridge/cpi_poster/Cargo.toml" -- --locked
 cargo build-bpf --manifest-path "modules/token_bridge/program/Cargo.toml" -- --locked
 cargo build-bpf --manifest-path "modules/nft_bridge/program/Cargo.toml" -- --locked
@@ -94,21 +94,21 @@ cargo build-bpf --manifest-path "migration/Cargo.toml" -- --locked
 Deploy other contracts
 ```
 
-solana program deploy target/deploy//cpi_poster.so
- Program Id: FmVLwmeqWyCfeDuHTxR8UrfXb1vTHWH1AHttWuXW3XTU
+solana program deploy target/deploy/cpi_poster.so
+ Program Id: 4Xy6tuSgpdBTJwiERD5WWLaxmVmCreeok2iLCyF697er
 
 solana program deploy target/deploy/wormhole_migration.so
- Program Id: 9r1k4n3imJmv1HxPQBB2SzniiBYKps8FXjPpYjYRtV5W
+ Program Id: C4bvwVx4sgEuhZ3seHvJxdmedfeUdfepnezm4f3WgrBj
 
 solana program deploy modules/token_bridge/token-metadata/spl_token_metadata.so
- Program Id: FcK14TDw1FvMuD5zCHq2XbBjnMmBGHPfmxwzorASqodY
+ Program Id: CM11z2r6DJhM8G3sfpkGdYecoQeYt8nV2QwxD4QjLFmU
 
 
 solana program deploy target/deploy/token_bridge.so
- Program Id: 7oJZZwJRDnH2kWdw77AGsEooHKvQJH9U7DcmmKMZpe4
+ Program Id: B3DacE35J6uTyoa8nbr5DoAYMVvedQeCTqYWf2cjyeTu
 
 solana program deploy target/deploy/nft_bridge.so
- Program Id: 3SSz94Z9tp6psLmmGre4RmBSorpCiTcEpduYVVH99jSj
+ Program Id: CVxxEp9A1YbNjCdxa7C7WG5zG2vBTgjBAGJhHr8ruAo3
 
 ```
 
@@ -116,9 +116,9 @@ Initial solana contracts
 ```
 cargo build --release
 
-export BRIDGE_ADDRESS=7izWzS4CxwGnyihtjiBfVpgQ7dyR8UmoJ6TiEqrhLbb5
-export TOKEN_BRIDGE_ADDRESS=7oJZZwJRDnH2kWdw77AGsEooHKvQJH9U7DcmmKMZpe4
-export NFT_BRIDGE_ADDRESS=3SSz94Z9tp6psLmmGre4RmBSorpCiTcEpduYVVH99jSj
+export BRIDGE_ADDRESS=GSJkPVPQdqaWayNBafwrDABfx2eetQnx6vudxr6WM8sg
+export TOKEN_BRIDGE_ADDRESS=B3DacE35J6uTyoa8nbr5DoAYMVvedQeCTqYWf2cjyeTu
+export NFT_BRIDGE_ADDRESS=CVxxEp9A1YbNjCdxa7C7WG5zG2vBTgjBAGJhHr8ruAo3
 export EMITTER_ADDRESS=11111111111111111111111111111115
 export INIT_SIGNERS_CSV=beFA429d57cD18b7F8A4d91A2da9AB4AF05d0FBe
 
@@ -160,41 +160,60 @@ Create VAA
 ./scripts/guardian-set-init.sh 1
 ```
 
+Set keys
+```
+export ETH_KEY=
+export INFURA_KEY=
+export SOLANA_KEY=
+```
+
+Apply env
+```
+source solana/.env
+```
 
 Register BSC chain
 ```
-cd ethereum
-npx truffle exec --network binance_testnet scripts/register_bsc_chain.js
-npx truffle exec --network binance_testnet scripts/register_solana_chain.js
-npx truffle exec --network binance_testnet scripts/register_bas_chain.js
-npx truffle exec --network binance_testnet scripts/register_eth_chain.js
+npm --prefix clients/js start -- submit -c bsc -n testnet $REGISTER_SOL_TOKEN_BRIDGE_VAA
+npm --prefix clients/js start -- submit -c bsc -n testnet $REGISTER_BSC_TOKEN_BRIDGE_VAA
+npm --prefix clients/js start -- submit -c bsc -n testnet $REGISTER_ETH_TOKEN_BRIDGE_VAA
+npm --prefix clients/js start -- submit -c bsc -n testnet $REGISTER_BAS_TOKEN_BRIDGE_VAA
+
+npm --prefix clients/js start -- submit -c bsc -n testnet $REGISTER_SOL_NFT_BRIDGE_VAA
+npm --prefix clients/js start -- submit -c bsc -n testnet $REGISTER_BSC_NFT_BRIDGE_VAA
+npm --prefix clients/js start -- submit -c bsc -n testnet $REGISTER_ETH_NFT_BRIDGE_VAA
+npm --prefix clients/js start -- submit -c bsc -n testnet $REGISTER_BAS_NFT_BRIDGE_VAA
 ```
 
-Register ETH chain
+Register ETH (goerli) chain
 ```
-npx truffle exec --network goerli scripts/register_bsc_chain.js
-npx truffle exec --network goerli scripts/register_solana_chain.js
-npx truffle exec --network goerli scripts/register_bas_chain.js
-npx truffle exec --network goerli scripts/register_eth_chain.js
+npm --prefix clients/js start -- submit -c ethereum -n testnet $REGISTER_SOL_TOKEN_BRIDGE_VAA
+npm --prefix clients/js start -- submit -c ethereum -n testnet $REGISTER_BSC_TOKEN_BRIDGE_VAA
+npm --prefix clients/js start -- submit -c ethereum -n testnet $REGISTER_ETH_TOKEN_BRIDGE_VAA
+npm --prefix clients/js start -- submit -c ethereum -n testnet $REGISTER_BAS_TOKEN_BRIDGE_VAA
+
+npm --prefix clients/js start -- submit -c ethereum -n testnet $REGISTER_SOL_NFT_BRIDGE_VAA
+npm --prefix clients/js start -- submit -c ethereum -n testnet $REGISTER_BSC_NFT_BRIDGE_VAA
+npm --prefix clients/js start -- submit -c ethereum -n testnet $REGISTER_ETH_NFT_BRIDGE_VAA
+npm --prefix clients/js start -- submit -c ethereum -n testnet $REGISTER_BAS_NFT_BRIDGE_VAA
 ```
 
 Register BAS chain
 ```
-npx truffle exec --network bas_testnet scripts/register_bsc_chain.js
-npx truffle exec --network bas_testnet scripts/register_solana_chain.js
-npx truffle exec --network bas_testnet scripts/register_bas_chain.js
-npx truffle exec --network bas_testnet scripts/register_eth_chain.js
+npm --prefix clients/js start -- submit -c bas -n testnet $REGISTER_SOL_TOKEN_BRIDGE_VAA
+npm --prefix clients/js start -- submit -c bas -n testnet $REGISTER_BSC_TOKEN_BRIDGE_VAA
+npm --prefix clients/js start -- submit -c bas -n testnet $REGISTER_ETH_TOKEN_BRIDGE_VAA
+npm --prefix clients/js start -- submit -c bas -n testnet $REGISTER_BAS_TOKEN_BRIDGE_VAA
+
+#npm --prefix clients/js start -- submit -c bas -n testnet $REGISTER_SOL_NFT_BRIDGE_VAA
+npm --prefix clients/js start -- submit -c bas -n testnet $REGISTER_BSC_NFT_BRIDGE_VAA
+npm --prefix clients/js start -- submit -c bas -n testnet $REGISTER_ETH_NFT_BRIDGE_VAA
+npm --prefix clients/js start -- submit -c bas -n testnet $REGISTER_BAS_NFT_BRIDGE_VAA
 ```
-
-
-
 
 Register solana chain
 
 ```
-cd ..
-source solana/.env
-
 npm --prefix clients/js start -- submit -c solana -n testnet $REGISTER_SOL_TOKEN_BRIDGE_VAA
 npm --prefix clients/js start -- submit -c solana -n testnet $REGISTER_BSC_TOKEN_BRIDGE_VAA
 npm --prefix clients/js start -- submit -c solana -n testnet $REGISTER_ETH_TOKEN_BRIDGE_VAA
@@ -274,10 +293,10 @@ guardian \
 --ethRopstenContract x00 \
 --acalaContract x00 \
 --moonbeamContract x00 \
---solanaContract 7izWzS4CxwGnyihtjiBfVpgQ7dyR8UmoJ6TiEqrhLbb5 \
---bscContract 0x9221EAb1e8d986CC9EE8a9F3EEAb2dF5c5a1DF91 \
---ethContract 0xdF814331a20448F60dE16AA942d010C24022E43F \
---basContract 0x98fdd30102cB8Dc8d62dD66E88D66Bf1C43c5A50
+--solanaContract GSJkPVPQdqaWayNBafwrDABfx2eetQnx6vudxr6WM8sg \
+--bscContract 0x2E686d5276008EEc8Fc1aeEbA9c04D3CF169Ab71 \
+--ethContract 0x6A1f2c5566Fb8BBbDffb1D05c2800971CF5996E9 \
+--basContract 0xC870f6e7887428f5CFA1eFAcC472F1b99a7138df
 
 ```
 

@@ -103,7 +103,7 @@ const TESTNET = {
   },
   solana: {
     rpc: "https://api.devnet.solana.com",
-    key: "4sSoRkZCopw1CkaUFP5vnrZNCuw89mncrUWxKRhjVdosSRXTfiWhQgM1NF7thNrN2atjHUDu82YTX628tdmKEgwm",
+    key: get_env_var("SOLANA_KEY"),
   },
   terra: {
     rpc: "https://bombay-lcd.terra.dev",
