@@ -286,7 +286,7 @@ module.exports = {
       },
       network_id: 17243,
       gasPrice: 1000000000,
-      networkCheckTimeouti: 6000000
+      networkCheckTimeout: 6000000
     },
   },
 

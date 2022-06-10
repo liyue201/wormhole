@@ -16,7 +16,7 @@ export const CHAINS = {
   celo: 14,
   near: 15,
   moonbeam: 16,
-  bas: 17,
+  bas: 18,
   ropsten: 10001,
 } as const;
 
@@ -158,9 +158,9 @@ const TESTNET = {
     nft_bridge: undefined,
   },
   solana: {
-    core: "7izWzS4CxwGnyihtjiBfVpgQ7dyR8UmoJ6TiEqrhLbb5",
-    token_bridge: "7oJZZwJRDnH2kWdw77AGsEooHKvQJH9U7DcmmKMZpe4",
-    nft_bridge: "3SSz94Z9tp6psLmmGre4RmBSorpCiTcEpduYVVH99jSj",
+    core: "GSJkPVPQdqaWayNBafwrDABfx2eetQnx6vudxr6WM8sg",
+    token_bridge: "B3DacE35J6uTyoa8nbr5DoAYMVvedQeCTqYWf2cjyeTu",
+    nft_bridge: "CVxxEp9A1YbNjCdxa7C7WG5zG2vBTgjBAGJhHr8ruAo3",
   },
   terra: {
     core: "terra1pd65m0q9tl3v8znnz5f5ltsfegyzah7g42cx5v",
@@ -168,14 +168,14 @@ const TESTNET = {
     nft_bridge: undefined,
   },
   ethereum: {
-    core: "0xdF814331a20448F60dE16AA942d010C24022E43F",
-    token_bridge: "0x377743955cb199A0b03755d811dB8fe713a476f8",
-    nft_bridge: "0x99fCc38C54265775F6576CbC6A8Df48b32b89F3D",
+    core: "0x6A1f2c5566Fb8BBbDffb1D05c2800971CF5996E9",
+    token_bridge: "0xCC540c29b3Eb8D842a7a5E86699008586d929363",
+    nft_bridge: "0x0Da20180766d5D202A67e75032C73a6Be79e5E45",
   },
   bsc: {
-    core: "0x9221EAb1e8d986CC9EE8a9F3EEAb2dF5c5a1DF91",
-    token_bridge: "0xE2D45923A79D16D6920fF4f3e51e4794e2b579f6",
-    nft_bridge: "0x369D52A7752fb2370793865517a0c637EA1267d8",
+    core: "0x2E686d5276008EEc8Fc1aeEbA9c04D3CF169Ab71",
+    token_bridge: "0x98fdd30102cB8Dc8d62dD66E88D66Bf1C43c5A50",
+    nft_bridge: "0xa1331Ea07EB4C2cCe443a7576504CE93BB5b1B0F",
   },
   polygon: {
     core: "0x0CBE91CF822c73C2315FB05100C2F714765d5c20",
@@ -243,9 +243,9 @@ const TESTNET = {
     nft_bridge: "0x2b048Da40f69c8dc386a56705915f8E966fe1eba",
   },
   bas: {
-    core: "0x98fdd30102cB8Dc8d62dD66E88D66Bf1C43c5A50",
-    token_bridge: "0x42d81210CC5059d5Be68A3154E0DD5E58259176e",
-    nft_bridge: "0x1c4377588B5960Ed29268a1BcB32F87D7Ff9CdE6",
+    core: "0xC870f6e7887428f5CFA1eFAcC472F1b99a7138df",
+    token_bridge: "0x708cE9C089db9485161b22510BD0f1192F4f41Aa",
+    nft_bridge: "0xc4a83CBC9e50833CEc98aE7191C756125Bf49dDC",
   },
 };
 

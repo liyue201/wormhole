@@ -22,24 +22,24 @@ func ethAddressEmitter(src string) {
 func main() {
 	// solana
 	fmt.Println("solana")
-	base58ToHex("9YRLebhZ3ZCFqHjj4Afa89858yp1B1qCb26qc3BMDpNA")
-	base58ToHex("GUL4iywHpuXR5YWeZnhwUL5StYyzKrb2sjLkSRh6U5We")
-	base58ToHex("Cpa9E57wcoBaLjyTFoXxWrUob5kXW2WJpphVv7ciGBAn")
+	base58ToHex("8kCgfjgBMLrX7mgyJDiLJEYtGctoMwEGZyc9pEPsPTkv")
+	base58ToHex("VwtKPYBcPnSakZ6VyL31TTaSa2NmZnoKydeDpayZ74j")
+	base58ToHex("4NfFQwR157w1gL1KsFobLHFXoJifHbTwjkBSCgGWmmvm")
 
 	// eth
 	fmt.Println("eth")
-	ethAddressEmitter("0xdF814331a20448F60dE16AA942d010C24022E43F")
-	ethAddressEmitter("0x377743955cb199A0b03755d811dB8fe713a476f8")
-	ethAddressEmitter("0x92E2d7b918636601B5eD93d19BA112154A91cc76")
+	ethAddressEmitter("0x6A1f2c5566Fb8BBbDffb1D05c2800971CF5996E9")
+	ethAddressEmitter("0xCC540c29b3Eb8D842a7a5E86699008586d929363")
+	ethAddressEmitter("0x0Da20180766d5D202A67e75032C73a6Be79e5E45")
 
 	fmt.Println("bsc")
-	ethAddressEmitter("0x9221EAb1e8d986CC9EE8a9F3EEAb2dF5c5a1DF91")
-	ethAddressEmitter("0xE2D45923A79D16D6920fF4f3e51e4794e2b579f6")
-	ethAddressEmitter("0x369D52A7752fb2370793865517a0c637EA1267d8")
+	ethAddressEmitter("0x2E686d5276008EEc8Fc1aeEbA9c04D3CF169Ab71")
+	ethAddressEmitter("0x98fdd30102cB8Dc8d62dD66E88D66Bf1C43c5A50")
+	ethAddressEmitter("0xa1331Ea07EB4C2cCe443a7576504CE93BB5b1B0F")
 
 	// bas
 	fmt.Println("bas")
-	ethAddressEmitter("0x98fdd30102cB8Dc8d62dD66E88D66Bf1C43c5A50")
-	ethAddressEmitter("0x42d81210CC5059d5Be68A3154E0DD5E58259176e")
-	ethAddressEmitter("0x1c4377588B5960Ed29268a1BcB32F87D7Ff9CdE6")
+	ethAddressEmitter("0xC870f6e7887428f5CFA1eFAcC472F1b99a7138df")
+	ethAddressEmitter("0x708cE9C089db9485161b22510BD0f1192F4f41Aa")
+	ethAddressEmitter("0xc4a83CBC9e50833CEc98aE7191C756125Bf49dDC")
 }

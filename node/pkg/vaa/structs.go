@@ -116,6 +116,8 @@ func (c ChainID) String() string {
 		return "celo"
 	case ChainIDMoonbeam:
 		return "moonbeam"
+	case ChainIDBAS:
+		return "bas"
 	default:
 		return fmt.Sprintf("unknown chain ID: %d", c)
 	}
@@ -196,7 +198,7 @@ const (
 	ChainIDMoonbeam ChainID = 16
 
 	// ChainIDBAS is the ChainID of BAS
-	ChainIDBAS ChainID = 17
+	ChainIDBAS ChainID = 18
 
 	// ChainIDEthereumRopsten is the ChainID of Ethereum Ropsten
 	ChainIDEthereumRopsten ChainID = 10001
