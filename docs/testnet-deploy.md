@@ -60,6 +60,20 @@ cp .env.bas.testnet .env
 npx truffle migrate --network bas_testnet --to 4
 ```
 
+### Deploy Findora contracts
+Work in the `ethereum` directory
+
+Deploy FRA Wrapper token contract
+```
+npx truffle migrate --network findora_testnet --f 9
+```
+Then update `BRIDGE_INIT_WETH` in `.env.findora.testnet`   
+Then deploy bridge contracts
+```
+cp .env.findora.testnet .env
+npx truffle migrate --network findora_testnet --to 4
+```
+
 ### Deploy solana contracts
 
 Install solana tool
@@ -187,11 +201,13 @@ npm --prefix clients/js start -- submit -c bsc -n testnet $REGISTER_SOL_TOKEN_BR
 npm --prefix clients/js start -- submit -c bsc -n testnet $REGISTER_BSC_TOKEN_BRIDGE_VAA
 npm --prefix clients/js start -- submit -c bsc -n testnet $REGISTER_ETH_TOKEN_BRIDGE_VAA
 npm --prefix clients/js start -- submit -c bsc -n testnet $REGISTER_BAS_TOKEN_BRIDGE_VAA
+npm --prefix clients/js start -- submit -c bsc -n testnet $REGISTER_FRA_TOKEN_BRIDGE_VAA
 
 npm --prefix clients/js start -- submit -c bsc -n testnet $REGISTER_SOL_NFT_BRIDGE_VAA
 npm --prefix clients/js start -- submit -c bsc -n testnet $REGISTER_BSC_NFT_BRIDGE_VAA
 npm --prefix clients/js start -- submit -c bsc -n testnet $REGISTER_ETH_NFT_BRIDGE_VAA
 npm --prefix clients/js start -- submit -c bsc -n testnet $REGISTER_BAS_NFT_BRIDGE_VAA
+npm --prefix clients/js start -- submit -c bsc -n testnet $REGISTER_FRA_NFT_BRIDGE_VAA
 ```
 
 Register ETH (goerli) chain
@@ -200,11 +216,13 @@ npm --prefix clients/js start -- submit -c ethereum -n testnet $REGISTER_SOL_TOK
 npm --prefix clients/js start -- submit -c ethereum -n testnet $REGISTER_BSC_TOKEN_BRIDGE_VAA
 npm --prefix clients/js start -- submit -c ethereum -n testnet $REGISTER_ETH_TOKEN_BRIDGE_VAA
 npm --prefix clients/js start -- submit -c ethereum -n testnet $REGISTER_BAS_TOKEN_BRIDGE_VAA
+npm --prefix clients/js start -- submit -c ethereum -n testnet $REGISTER_FRA_TOKEN_BRIDGE_VAA
 
 npm --prefix clients/js start -- submit -c ethereum -n testnet $REGISTER_SOL_NFT_BRIDGE_VAA
 npm --prefix clients/js start -- submit -c ethereum -n testnet $REGISTER_BSC_NFT_BRIDGE_VAA
 npm --prefix clients/js start -- submit -c ethereum -n testnet $REGISTER_ETH_NFT_BRIDGE_VAA
 npm --prefix clients/js start -- submit -c ethereum -n testnet $REGISTER_BAS_NFT_BRIDGE_VAA
+npm --prefix clients/js start -- submit -c ethereum -n testnet $REGISTER_FRA_NFT_BRIDGE_VAA
 ```
 
 Register BAS chain
@@ -213,11 +231,13 @@ npm --prefix clients/js start -- submit -c bas -n testnet $REGISTER_SOL_TOKEN_BR
 npm --prefix clients/js start -- submit -c bas -n testnet $REGISTER_BSC_TOKEN_BRIDGE_VAA
 npm --prefix clients/js start -- submit -c bas -n testnet $REGISTER_ETH_TOKEN_BRIDGE_VAA
 npm --prefix clients/js start -- submit -c bas -n testnet $REGISTER_BAS_TOKEN_BRIDGE_VAA
+npm --prefix clients/js start -- submit -c bas -n testnet $REGISTER_FRA_TOKEN_BRIDGE_VAA
 
 #npm --prefix clients/js start -- submit -c bas -n testnet $REGISTER_SOL_NFT_BRIDGE_VAA
 npm --prefix clients/js start -- submit -c bas -n testnet $REGISTER_BSC_NFT_BRIDGE_VAA
 npm --prefix clients/js start -- submit -c bas -n testnet $REGISTER_ETH_NFT_BRIDGE_VAA
 npm --prefix clients/js start -- submit -c bas -n testnet $REGISTER_BAS_NFT_BRIDGE_VAA
+npm --prefix clients/js start -- submit -c bas -n testnet $REGISTER_FRA_NFT_BRIDGE_VAA
 ```
 
 Register solana chain
@@ -227,13 +247,31 @@ npm --prefix clients/js start -- submit -c solana -n testnet $REGISTER_SOL_TOKEN
 npm --prefix clients/js start -- submit -c solana -n testnet $REGISTER_BSC_TOKEN_BRIDGE_VAA
 npm --prefix clients/js start -- submit -c solana -n testnet $REGISTER_ETH_TOKEN_BRIDGE_VAA
 npm --prefix clients/js start -- submit -c solana -n testnet $REGISTER_BAS_TOKEN_BRIDGE_VAA
+npm --prefix clients/js start -- submit -c solana -n testnet $REGISTER_FRA_TOKEN_BRIDGE_VAA
 
 #npm --prefix clients/js start -- submit -c solana -n testnet $REGISTER_SOL_NFT_BRIDGE_VAA
 npm --prefix clients/js start -- submit -c solana -n testnet $REGISTER_BSC_NFT_BRIDGE_VAA
 npm --prefix clients/js start -- submit -c solana -n testnet $REGISTER_ETH_NFT_BRIDGE_VAA
 npm --prefix clients/js start -- submit -c solana -n testnet $REGISTER_BAS_NFT_BRIDGE_VAA
+npm --prefix clients/js start -- submit -c solana -n testnet $REGISTER_FRA_NFT_BRIDGE_VAA
 ```
 
+
+Register findora chain
+
+```
+npm --prefix clients/js start -- submit -c findora -n testnet $REGISTER_SOL_TOKEN_BRIDGE_VAA
+npm --prefix clients/js start -- submit -c findora -n testnet $REGISTER_BSC_TOKEN_BRIDGE_VAA
+npm --prefix clients/js start -- submit -c findora -n testnet $REGISTER_ETH_TOKEN_BRIDGE_VAA
+npm --prefix clients/js start -- submit -c findora -n testnet $REGISTER_BAS_TOKEN_BRIDGE_VAA
+npm --prefix clients/js start -- submit -c findora -n testnet $REGISTER_FRA_TOKEN_BRIDGE_VAA
+
+npm --prefix clients/js start -- submit -c findora -n testnet $REGISTER_SOL_NFT_BRIDGE_VAA
+npm --prefix clients/js start -- submit -c findora -n testnet $REGISTER_BSC_NFT_BRIDGE_VAA
+npm --prefix clients/js start -- submit -c findora -n testnet $REGISTER_ETH_NFT_BRIDGE_VAA
+npm --prefix clients/js start -- submit -c findora -n testnet $REGISTER_BAS_NFT_BRIDGE_VAA
+npm --prefix clients/js start -- submit -c findora -n testnet $REGISTER_FRA_NFT_BRIDGE_VAA
+```
 
 ## Deploy guardian
 
@@ -282,6 +320,7 @@ guardian \
 --ethRPC wss://goerli.infura.io/ws/v3/cdcc3e7f476546ffa7e686d5d0ae3dce \
 --bscRPC wss://data-seed-prebsc-2-s1.binance.org:8545/ \
 --basRPC ws://35.87.87.204:8546/ \
+--findoraRPC ws://prod-testnet-us-west-2-full-bridge-001-open.prod.findora.org:8546 \
 --solanaRPC https://api.devnet.solana.com \
 --solanaWS wss://api.devnet.solana.com/ \
 --publicRPC "[::]:7070" \
@@ -289,6 +328,7 @@ guardian \
 --dataDir /data \
 --guardianKey /data/bridge.key \
 --nodeKey /data/node.key \
+--bootstrap /ip4/127.0.0.1/udp/8999/quic/p2p/12D3KooWQVJta8rN6nDid9v8YiG1o9bPJ8EnrxisJhXvHvX9xDri \
 --disableTelemetry true \
 --adminSocket /tmp/admin.sock \
 --terraContract 0x00 \
@@ -305,8 +345,8 @@ guardian \
 --solanaContract GSJkPVPQdqaWayNBafwrDABfx2eetQnx6vudxr6WM8sg \
 --bscContract 0x2E686d5276008EEc8Fc1aeEbA9c04D3CF169Ab71 \
 --ethContract 0x6A1f2c5566Fb8BBbDffb1D05c2800971CF5996E9 \
---basContract 0xC870f6e7887428f5CFA1eFAcC472F1b99a7138df
-
+--basContract 0xC870f6e7887428f5CFA1eFAcC472F1b99a7138df \
+--findoraContract 0x1fAbAf4F0386778b71B57C658460a4588b18D1C9
 ```
 
 ## Deploy bridge_ui

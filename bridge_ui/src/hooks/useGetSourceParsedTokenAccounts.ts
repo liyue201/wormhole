@@ -6,6 +6,7 @@ import {
   CHAIN_ID_AVAX,
   CHAIN_ID_BSC,
   CHAIN_ID_BAS,
+  CHAIN_ID_FINDORA,
   CHAIN_ID_CELO,
   CHAIN_ID_ETH,
   CHAIN_ID_ETHEREUM_ROPSTEN,
@@ -52,6 +53,8 @@ import karuraIcon from "../icons/karura.svg";
 import klaytnIcon from "../icons/klaytn.svg";
 import oasisIcon from "../icons/oasis-network-rose-logo.svg";
 import polygonIcon from "../icons/polygon.svg";
+import basIcon from "../icons/polygon.svg";
+import findoraIcon from "../icons/polygon.svg";
 import {
   errorSourceParsedTokenAccounts as errorSourceParsedTokenAccountsNFT,
   fetchSourceParsedTokenAccounts as fetchSourceParsedTokenAccountsNFT,
@@ -111,6 +114,8 @@ import {
   WROSE_DECIMALS,
   WOVR_ADDRESS,
   WOVR_DECIMALS,
+  WFRA_ADDRESS,
+  WFRA_DECIMALS,
 } from "../utils/consts";
 import {
   ExtractedMintInfo,
@@ -541,11 +546,36 @@ const createNativeBasParsedTokenAccount = (
                 balanceInEth.toString(), //This is the actual display field, which has full precision.
                 "OVR", //A white lie for display purposes
                 "BAS Coin", //A white lie for display purposes
-                bnbIcon,
+                basIcon,
                 true //isNativeAsset
             );
         });
 };
+
+
+const createNativeFindoraParsedTokenAccount = (
+    provider: Provider,
+    signerAddress: string | undefined
+) => {
+    return !(provider && signerAddress)
+        ? Promise.reject()
+        : provider.getBalance(signerAddress).then((balanceInWei) => {
+            const balanceInEth = ethers.utils.formatEther(balanceInWei);
+            return createParsedTokenAccount(
+                signerAddress, //public key
+                WFRA_ADDRESS, //Mint key, On the other side this will be WBNB, so this is hopefully a white lie.
+                balanceInWei.toString(), //amount, in wei
+                WFRA_DECIMALS, //Luckily both BNB and WBNB have 18 decimals, so this should not be an issue.
+                parseFloat(balanceInEth), //This loses precision, but is a limitation of the current datamodel. This field is essentially deprecated
+                balanceInEth.toString(), //This is the actual display field, which has full precision.
+                "FRA", //A white lie for display purposes
+                "FRA Coin", //A white lie for display purposes
+                findoraIcon,
+                true //isNativeAsset
+            );
+        });
+};
+
 
 const createNFTParsedTokenAccountFromCovalent = (
   walletAddress: string,
@@ -1053,6 +1083,40 @@ function useGetAvailableTokens(nft: boolean = false) {
                         setEthNativeAccount(undefined);
                         setEthNativeAccountLoading(false);
                         setEthNativeAccountError("Unable to retrieve your OVR balance.");
+                    }
+                }
+            );
+        }
+
+        return () => {
+            cancelled = true;
+        };
+    }, [lookupChain, provider, signerAddress, nft, ethNativeAccount]);
+
+    //Findora Chain native asset load
+    useEffect(() => {
+        let cancelled = false;
+        if (
+            signerAddress &&
+            lookupChain === CHAIN_ID_FINDORA &&
+            !ethNativeAccount &&
+            !nft
+        ) {
+            setEthNativeAccountLoading(true);
+            createNativeFindoraParsedTokenAccount(provider, signerAddress).then(
+                (result) => {
+                    console.log("create native account returned with value", result);
+                    if (!cancelled) {
+                        setEthNativeAccount(result);
+                        setEthNativeAccountLoading(false);
+                        setEthNativeAccountError("");
+                    }
+                },
+                (error) => {
+                    if (!cancelled) {
+                        setEthNativeAccount(undefined);
+                        setEthNativeAccountLoading(false);
+                        setEthNativeAccountError("Unable to retrieve your Findora balance.");
                     }
                 }
             );

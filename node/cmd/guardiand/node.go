@@ -105,6 +105,9 @@ var (
 	basRPC      *string
 	basContract *string
 
+	findoraRPC      *string
+	findoraContract *string
+
 	terraWS       *string
 	terraLCD      *string
 	terraContract *string
@@ -204,6 +207,9 @@ func init() {
 
 	basRPC = NodeCmd.Flags().String("basRPC", "", "BAS Chain RPC URL")
 	basContract = NodeCmd.Flags().String("basContract", "", "BAS Chain contract address")
+
+	findoraRPC = NodeCmd.Flags().String("findoraRPC", "", "Findora Chain RPC URL")
+	findoraContract = NodeCmd.Flags().String("findoraContract", "", "Findora Chain contract address")
 
 	terraWS = NodeCmd.Flags().String("terraWS", "", "Path to terrad root for websocket connection")
 	terraLCD = NodeCmd.Flags().String("terraLCD", "", "Path to LCD service root for http calls")
@@ -467,6 +473,9 @@ func runNode(cmd *cobra.Command, args []string) {
 	if *basContract == "" {
 		logger.Fatal("Please specify --basContract")
 	}
+	if *findoraContract == "" {
+		logger.Fatal("Please specify --findoraContract")
+	}
 	if *testnetMode {
 		if *ethRopstenRPC == "" {
 			logger.Fatal("Please specify --ethRopstenRPC")
@@ -601,6 +610,7 @@ func runNode(cmd *cobra.Command, args []string) {
 	//celoContractAddr := eth_common.HexToAddress(*celoContract)
 	//moonbeamContractAddr := eth_common.HexToAddress(*moonbeamContract)
 	basContractAddr := eth_common.HexToAddress(*basContract)
+	findoraContractAddr := eth_common.HexToAddress(*findoraContract)
 	solAddress, err := solana_types.PublicKeyFromBase58(*solanaContract)
 	if err != nil {
 		logger.Fatal("invalid Solana contract address", zap.Error(err))
@@ -697,6 +707,8 @@ func runNode(cmd *cobra.Command, args []string) {
 		chainObsvReqC[vaa.ChainIDMoonbeam] = make(chan *gossipv1.ObservationRequest)
 		chainObsvReqC[vaa.ChainIDEthereumRopsten] = make(chan *gossipv1.ObservationRequest)
 	}
+	chainObsvReqC[vaa.ChainIDBAS] = make(chan *gossipv1.ObservationRequest)
+	chainObsvReqC[vaa.ChainIDFindora] = make(chan *gossipv1.ObservationRequest)
 
 	// Multiplex observation requests to the appropriate chain
 	go func() {
@@ -895,6 +907,11 @@ func runNode(cmd *cobra.Command, args []string) {
 
 		if err := supervisor.Run(ctx, "baswatch",
 			ethereum.NewEthWatcher(*basRPC, basContractAddr, "bas", common.ReadinessBasSyncing, vaa.ChainIDBAS, lockC, nil, 1, chainObsvReqC[vaa.ChainIDBAS], *unsafeDevMode).Run); err != nil {
+			return err
+		}
+
+		if err := supervisor.Run(ctx, "findorawatch",
+			ethereum.NewEthWatcher(*findoraRPC, findoraContractAddr, "findora", common.ReadinessFindoraSyncing, vaa.ChainIDFindora, lockC, nil, 1, chainObsvReqC[vaa.ChainIDFindora], *unsafeDevMode).Run); err != nil {
 			return err
 		}
 

@@ -6,6 +6,7 @@ import {
   CHAIN_ID_OASIS,
   CHAIN_ID_POLYGON,
   CHAIN_ID_BAS,
+  CHAIN_ID_FINDORA,
   MockWETH9__factory,
 } from "@certusone/wormhole-sdk";
 import {
@@ -28,6 +29,8 @@ import ethIcon from "../icons/eth.svg";
 import fantomIcon from "../icons/fantom.svg";
 import oasisIcon from "../icons/oasis-network-rose-logo.svg";
 import polygonIcon from "../icons/polygon.svg";
+import basIcon from "../icons/polygon.svg";
+import findoraIcon from "../icons/polygon.svg";
 import { COLORS } from "../muiTheme";
 import {
   DataWrapper,
@@ -51,6 +54,8 @@ import {
   WROSE_DECIMALS,
   WOVR_ADDRESS,
   WOVR_DECIMALS,
+  WFRA_ADDRESS,
+  WFRA_DECIMALS,
 } from "../utils/consts";
 import parseError from "../utils/parseError";
 import ButtonWithLoader from "./ButtonWithLoader";
@@ -129,9 +134,15 @@ const supportedTokens = {
   },
   [CHAIN_ID_BAS]: {
     symbol: "WOVR",
-    icon: bnbIcon,
+    icon: basIcon,
     address: WOVR_ADDRESS,
     decimals: WOVR_DECIMALS,
+  },
+  [CHAIN_ID_FINDORA]: {
+    symbol: "WFRA",
+    icon: findoraIcon,
+    address: WFRA_ADDRESS,
+    decimals: WFRA_DECIMALS,
   },
 } as const;
 

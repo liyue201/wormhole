@@ -16,6 +16,7 @@ import {
   CHAIN_ID_SOLANA,
   CHAIN_ID_TERRA,
   CHAIN_ID_BAS,
+  CHAIN_ID_FINDORA,
   isEVMChain,
 } from "@certusone/wormhole-sdk";
 import { clusterApiUrl } from "@solana/web3.js";
@@ -36,6 +37,7 @@ import polygonIcon from "../icons/polygon.svg";
 import solanaIcon from "../icons/solana.svg";
 import terraIcon from "../icons/terra.svg";
 import basIcon from "../icons/terra.svg";
+import findoraIcon from "../icons/findora.svg";
 
 export type Cluster = "devnet" | "testnet" | "mainnet";
 export const CLUSTER: Cluster =
@@ -195,6 +197,11 @@ export const CHAINS: ChainInfo[] =
               name: "BAS",
               logo: basIcon,
           },
+          {
+              id: CHAIN_ID_FINDORA,
+              name: "Findora",
+              logo: findoraIcon,
+          },
       ]
     : [
         {
@@ -242,7 +249,8 @@ export const CHAINS_WITH_NFT_SUPPORT = CHAINS.filter(
     id === CHAIN_ID_ACALA ||
     id === CHAIN_ID_KLAYTN ||
     id === CHAIN_ID_CELO ||
-    id === CHAIN_ID_BAS
+    id === CHAIN_ID_BAS ||
+    id === CHAIN_ID_FINDORA
 );
 export type ChainsById = { [key in ChainId]: ChainInfo };
 export const CHAINS_BY_ID: ChainsById = CHAINS.reduce((obj, chain) => {
@@ -281,7 +289,9 @@ export const getDefaultNativeCurrencySymbol = (chainId: ChainId) =>
     : chainId === CHAIN_ID_CELO
     ? "CELO"
     : chainId === CHAIN_ID_BAS
-      ? "OVR"
+    ? "OVR"
+    : chainId === CHAIN_ID_FINDORA
+    ? "FRA"
     : "";
 export const getExplorerName = (chainId: ChainId) =>
   chainId === CHAIN_ID_ETH || chainId === CHAIN_ID_ETHEREUM_ROPSTEN
@@ -344,6 +354,8 @@ export const CELO_NETWORK_CHAIN_ID =
   CLUSTER === "mainnet" ? 42220 : CLUSTER === "testnet" ? 44787 : 1381;
 export const BAS_NETWORK_CHAIN_ID =
     CLUSTER === "mainnet" ? 14000 : CLUSTER === "testnet" ? 14000 : 14000;
+export const FINDORA_NETWORK_CHAIN_ID =
+    CLUSTER === "mainnet" ? 2153 : CLUSTER === "testnet" ? 2153 : 2153;
 
 export const getEvmChainId = (chainId: ChainId) =>
   chainId === CHAIN_ID_ETH
@@ -372,6 +384,8 @@ export const getEvmChainId = (chainId: ChainId) =>
     ? CELO_NETWORK_CHAIN_ID
     : chainId === CHAIN_ID_BAS
     ? BAS_NETWORK_CHAIN_ID
+    : chainId === CHAIN_ID_FINDORA
+    ? FINDORA_NETWORK_CHAIN_ID
     : undefined;
 export const SOLANA_HOST = process.env.REACT_APP_SOLANA_API_URL
   ? process.env.REACT_APP_SOLANA_API_URL
@@ -722,6 +736,28 @@ export const BAS_NFT_BRIDGE_ADDRESS =
             ? "0xc4a83CBC9e50833CEc98aE7191C756125Bf49dDC"
             : "0x1c4377588B5960Ed29268a1BcB32F87D7Ff9CdE6";
 
+
+export const FINDORA_BRIDGE_ADDRESS =
+    CLUSTER === "mainnet"
+        ? "0x98fdd30102cB8Dc8d62dD66E88D66Bf1C43c5A50"
+        : CLUSTER === "testnet"
+            ? "0x1fAbAf4F0386778b71B57C658460a4588b18D1C9"
+            : "0x98fdd30102cB8Dc8d62dD66E88D66Bf1C43c5A50";
+
+export const FINDORA_TOKEN_BRIDGE_ADDRESS =
+    CLUSTER === "mainnet"
+        ? "0x42d81210CC5059d5Be68A3154E0DD5E58259176e"
+        : CLUSTER === "testnet"
+            ? "0xf9678A11BFe389Fc538b92EDDBE3e7FFc6B5159A"
+            : "0x42d81210CC5059d5Be68A3154E0DD5E58259176e";
+
+export const FINDORA_NFT_BRIDGE_ADDRESS =
+    CLUSTER === "mainnet"
+        ? "0x1c4377588B5960Ed29268a1BcB32F87D7Ff9CdE6"
+        : CLUSTER === "testnet"
+            ? "0x03d45a129c4D0768d453dB865287d84a7be2FAf8"
+            : "0x1c4377588B5960Ed29268a1BcB32F87D7Ff9CdE6";
+
 export const SOL_CUSTODY_ADDRESS =
   "GugU1tP7doLeTw9hQP51xRJyS8Da1fWxuiy2rVrnMD2m";
 export const SOL_NFT_CUSTODY_ADDRESS =
@@ -780,6 +816,8 @@ export const getBridgeAddressForChain = (chainId: ChainId) =>
     ? CELO_BRIDGE_ADDRESS
     : chainId === CHAIN_ID_BAS
     ? BAS_BRIDGE_ADDRESS
+    : chainId === CHAIN_ID_FINDORA
+    ? FINDORA_BRIDGE_ADDRESS
     : "";
 export const getNFTBridgeAddressForChain = (chainId: ChainId) =>
   chainId === CHAIN_ID_SOLANA
@@ -810,6 +848,8 @@ export const getNFTBridgeAddressForChain = (chainId: ChainId) =>
     ? CELO_NFT_BRIDGE_ADDRESS
     : chainId === CHAIN_ID_BAS
     ? BAS_NFT_BRIDGE_ADDRESS
+    : chainId === CHAIN_ID_FINDORA
+    ? FINDORA_NFT_BRIDGE_ADDRESS
     : "";
 export const getTokenBridgeAddressForChain = (chainId: ChainId) =>
   chainId === CHAIN_ID_SOLANA
@@ -842,6 +882,8 @@ export const getTokenBridgeAddressForChain = (chainId: ChainId) =>
     ? CELO_TOKEN_BRIDGE_ADDRESS
     : chainId === CHAIN_ID_BAS
     ? BAS_TOKEN_BRIDGE_ADDRESS
+    : chainId === CHAIN_ID_FINDORA
+    ? FINDORA_TOKEN_BRIDGE_ADDRESS
     : "";
 
 export const COVALENT_API_KEY = process.env.REACT_APP_COVALENT_API_KEY
@@ -928,6 +970,15 @@ export const WOVR_ADDRESS =
             : "0xDDb64fE46a91D46ee29420539FC25FD07c5FEa3E";
 
 export const WOVR_DECIMALS = 18;
+
+export const WFRA_ADDRESS =
+    CLUSTER === "mainnet"
+        ? "0x7A80fFfb2fB9abF218c56896B2552274890a200A"
+        : CLUSTER === "testnet"
+            ? "0x7A80fFfb2fB9abF218c56896B2552274890a200A"
+            : "0x7A80fFfb2fB9abF218c56896B2552274890a200A";
+
+export const WFRA_DECIMALS = 18;
 
 export const WMATIC_ADDRESS =
   CLUSTER === "mainnet"
@@ -1443,4 +1494,5 @@ export const COLOR_BY_CHAIN_ID: { [key in ChainId]?: string } = {
   [CHAIN_ID_KARURA]: "#FF4B3B",
   [CHAIN_ID_ACALA]: "#E00F51",
   [CHAIN_ID_BAS]: "#E00F51",
+  [CHAIN_ID_BAS]: "#1969FF",
 };

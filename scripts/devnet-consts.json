@@ -215,6 +215,19 @@
                 "nftBridgeEmitterAddress": "000000000000000000000000c4a83cbc9e50833cec98ae7191c756125bf49ddc",
                 "nftBridgeAddress": "0xc4a83CBC9e50833CEc98aE7191C756125Bf49dDC"
             }
+        },
+        "19": {
+            "rpcUrlTilt": "http://eth-devnet2:8546",
+            "rpcUrlLocal": "http://localhost:8546",
+            "rpcPort": "8545",
+            "contracts": {
+                "coreEmitterAddress": "0000000000000000000000001fabaf4f0386778b71b57c658460a4588b18d1c9",
+                "coreNativeAddress": "0x1fAbAf4F0386778b71B57C658460a4588b18D1C9",
+                "tokenBridgeEmitterAddress": "000000000000000000000000f9678a11bfe389fc538b92eddbe3e7ffc6b5159a",
+                "tokenBridgeNativeAddress": "0xf9678A11BFe389Fc538b92EDDBE3e7FFc6B5159A",
+                "nftBridgeEmitterAddress": "00000000000000000000000003d45a129c4d0768d453db865287d84a7be2faf8",
+                "nftBridgeAddress": "0x03d45a129c4D0768d453dB865287d84a7be2FAf8"
+            }
         }
     },
     "gancheDefaults": [

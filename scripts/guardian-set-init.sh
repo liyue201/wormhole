@@ -77,12 +77,15 @@ terraTokenBridge=$(jq --raw-output '.chains."3".contracts.tokenBridgeEmitterAddr
 bscTokenBridge=$(jq --raw-output '.chains."4".contracts.tokenBridgeEmitterAddress' $addressesJson)
 algoTokenBridge=$(jq --raw-output '.chains."8".contracts.tokenBridgeEmitterAddress' $addressesJson)
 basTokenBridge=$(jq --raw-output '.chains."18".contracts.tokenBridgeEmitterAddress' $addressesJson)
+findoraTokenBridge=$(jq --raw-output '.chains."19".contracts.tokenBridgeEmitterAddress' $addressesJson)
 
 solNFTBridge=$(jq --raw-output '.chains."1".contracts.nftBridgeEmitterAddress' $addressesJson)
 ethNFTBridge=$(jq --raw-output '.chains."2".contracts.nftBridgeEmitterAddress' $addressesJson)
 terraNFTBridge=$(jq --raw-output '.chains."3".contracts.nftBridgeEmitterAddress' $addressesJson)
 bscNFTBridge=$(jq --raw-output '.chains."4".contracts.nftBridgeEmitterAddress' $addressesJson)
 basNFTBridge=$(jq --raw-output '.chains."18".contracts.nftBridgeEmitterAddress' $addressesJson)
+findoraNFTBridge=$(jq --raw-output '.chains."19".contracts.nftBridgeEmitterAddress' $addressesJson)
+
 
 # 4) create token bridge registration VAAs
 echo "generating contract registration VAAs for token bridges"
@@ -98,6 +101,8 @@ terraTokenBridgeVAA=$(npm --prefix clients/js start --silent -- generate registr
 bscTokenBridgeVAA=$(npm --prefix clients/js start --silent -- generate registration -m TokenBridge -c bsc -a ${bscTokenBridge} -g ${guardiansPrivateCSV})
 algoTokenBridgeVAA=$(npm --prefix clients/js start --silent -- generate registration -m TokenBridge -c algorand -a ${algoTokenBridge} -g ${guardiansPrivateCSV})
 basTokenBridgeVAA=$(npm --prefix clients/js start --silent -- generate registration -m TokenBridge -c bas -a ${basTokenBridge} -g ${guardiansPrivateCSV})
+findoraTokenBridgeVAA=$(npm --prefix clients/js start --silent -- generate registration -m TokenBridge -c findora -a ${findoraTokenBridge} -g ${guardiansPrivateCSV})
+
 
 # 5) create nft bridge registration VAAs
 echo "generating contract registration VAAs for nft bridges"
@@ -106,7 +111,7 @@ ethNFTBridgeVAA=$(npm --prefix clients/js start --silent -- generate registratio
 terraNFTBridgeVAA=$(npm --prefix clients/js start --silent -- generate registration -m NFTBridge -c terra -a ${terraNFTBridge} -g ${guardiansPrivateCSV})
 bscNFTBridgeVAA=$(npm --prefix clients/js start --silent -- generate registration -m NFTBridge -c bsc -a ${bscNFTBridge} -g ${guardiansPrivateCSV})
 basNFTBridgeVAA=$(npm --prefix clients/js start --silent -- generate registration -m NFTBridge -c bas -a ${basNFTBridge} -g ${guardiansPrivateCSV})
-
+findoraNFTBridgeVAA=$(npm --prefix clients/js start --silent -- generate registration -m NFTBridge -c findora -a ${findoraNFTBridge} -g ${guardiansPrivateCSV})
 
 
 # 6) write the registration VAAs to env files
@@ -118,12 +123,14 @@ terraTokenBridge="REGISTER_TERRA_TOKEN_BRIDGE_VAA"
 bscTokenBridge="REGISTER_BSC_TOKEN_BRIDGE_VAA"
 algoTokenBridge="REGISTER_ALGO_TOKEN_BRIDGE_VAA"
 basTokenBridge="REGISTER_BAS_TOKEN_BRIDGE_VAA"
+findoraTokenBridge="REGISTER_FRA_TOKEN_BRIDGE_VAA"
 
 solNFTBridge="REGISTER_SOL_NFT_BRIDGE_VAA"
 ethNFTBridge="REGISTER_ETH_NFT_BRIDGE_VAA"
 terraNFTBridge="REGISTER_TERRA_NFT_BRIDGE_VAA"
 bscNFTBridge="REGISTER_BSC_NFT_BRIDGE_VAA"
 basNFTBridge="REGISTER_BAS_NFT_BRIDGE_VAA"
+findoraNFTBridge="REGISTER_FRA_NFT_BRIDGE_VAA"
 
 # solana token bridge
 upsert_env_file $ethFile $solTokenBridge $solTokenBridgeVAA
@@ -169,6 +176,14 @@ upsert_env_file $envFile $basTokenBridge $basTokenBridgeVAA
 # bas ntf bridge
 upsert_env_file $ethFile $basNFTBridge $basNFTBridgeVAA
 upsert_env_file $envFile $basNFTBridge $basNFTBridgeVAA
+
+# findora token bridge
+upsert_env_file $ethFile $findoraTokenBridge $findoraTokenBridgeVAA
+upsert_env_file $envFile $findoraTokenBridge $findoraTokenBridgeVAA
+
+# findora ntf bridge
+upsert_env_file $ethFile $findoraNFTBridge $findoraNFTBridgeVAA
+upsert_env_file $envFile $findoraNFTBridge $findoraNFTBridgeVAA
 
 # 7) copy the local .env file to the solana & terra dirs, if the script is running on the host machine
 # chain dirs will not exist if running in docker for Tilt, only if running locally. check before copying.

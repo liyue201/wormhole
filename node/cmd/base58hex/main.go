@@ -42,4 +42,11 @@ func main() {
 	ethAddressEmitter("0xC870f6e7887428f5CFA1eFAcC472F1b99a7138df")
 	ethAddressEmitter("0x708cE9C089db9485161b22510BD0f1192F4f41Aa")
 	ethAddressEmitter("0xc4a83CBC9e50833CEc98aE7191C756125Bf49dDC")
+
+	// findora
+	fmt.Println("findora")
+	ethAddressEmitter("0x1fAbAf4F0386778b71B57C658460a4588b18D1C9")
+	ethAddressEmitter("0xf9678A11BFe389Fc538b92EDDBE3e7FFc6B5159A")
+	ethAddressEmitter("0x03d45a129c4D0768d453dB865287d84a7be2FAf8")
+
 }

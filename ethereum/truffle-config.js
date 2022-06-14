@@ -288,6 +288,19 @@ module.exports = {
       gasPrice: 1000000000,
       networkCheckTimeout: 6000000
     },
+
+    findora_testnet: {
+      provider: () => {
+        return new HDWalletProvider(
+            process.env.MNEMONIC,
+            "https://prod-testnet.prod.findora.org:8545/"
+        );
+      },
+      network_id: "2153",
+      gasPrice: 10000000000,
+      networkCheckTimeout: 6000000,
+      skipDryRun: true,
+    },
   },
 
   compilers: {

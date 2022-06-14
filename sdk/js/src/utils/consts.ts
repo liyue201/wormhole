@@ -17,6 +17,7 @@ export const CHAINS = {
   near: 15,
   moonbeam: 16,
   bas: 18,
+  findora: 19,
   ropsten: 10001,
 } as const;
 
@@ -41,7 +42,8 @@ export type EVMChainName =
   | "celo"
   | "moonbeam"
   | "ropsten"
-  | "bas";
+  | "bas"
+  | "findora";
 
 export type Contracts = {
   core: string | undefined;
@@ -149,6 +151,11 @@ const MAINNET = {
     token_bridge: undefined,
     nft_bridge: undefined,
   },
+  findora: {
+    core: undefined,
+    token_bridge: undefined,
+    nft_bridge: undefined,
+  },
 };
 
 const TESTNET = {
@@ -246,6 +253,11 @@ const TESTNET = {
     core: "0xC870f6e7887428f5CFA1eFAcC472F1b99a7138df",
     token_bridge: "0x708cE9C089db9485161b22510BD0f1192F4f41Aa",
     nft_bridge: "0xc4a83CBC9e50833CEc98aE7191C756125Bf49dDC",
+  },
+  findora: {
+    core: "0x1fAbAf4F0386778b71B57C658460a4588b18D1C9",
+    token_bridge: "0xf9678A11BFe389Fc538b92EDDBE3e7FFc6B5159A",
+    nft_bridge: "0x03d45a129c4D0768d453dB865287d84a7be2FAf8",
   },
 };
 
@@ -345,6 +357,11 @@ const DEVNET = {
     token_bridge: undefined,
     nft_bridge: undefined,
   },
+  findora: {
+    core: undefined,
+    token_bridge: undefined,
+    nft_bridge: undefined,
+  },
 };
 
 /**
@@ -404,6 +421,7 @@ export const CHAIN_ID_NEAR = CHAINS["near"];
 export const CHAIN_ID_MOONBEAM = CHAINS["moonbeam"];
 export const CHAIN_ID_ETHEREUM_ROPSTEN = CHAINS["ropsten"];
 export const CHAIN_ID_BAS = CHAINS["bas"];
+export const CHAIN_ID_FINDORA = CHAINS["findora"];
 
 // This inverts the [[CHAINS]] object so that we can look up a chain by id
 export type ChainIdToName = {
@@ -512,7 +530,8 @@ export function isEVMChain(
     chainId === CHAIN_ID_CELO ||
     chainId === CHAIN_ID_MOONBEAM ||
     chainId === CHAIN_ID_ETHEREUM_ROPSTEN ||
-    chainId === CHAIN_ID_BAS
+    chainId === CHAIN_ID_BAS ||
+    chainId == CHAIN_ID_FINDORA
   ) {
     return isEVM(chainId);
   } else {

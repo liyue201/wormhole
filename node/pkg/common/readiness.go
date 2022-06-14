@@ -20,4 +20,5 @@ const (
 	ReadinessCeloSyncing       readiness.Component = "celoSyncing"
 	ReadinessMoonbeamSyncing   readiness.Component = "moonbeamSyncing"
 	ReadinessBasSyncing        readiness.Component = "basSyncing"
+	ReadinessFindoraSyncing    readiness.Component = "findoraSyncing"
 )

@@ -94,6 +94,10 @@ const MAINNET = {
     rpc: undefined,
     key: undefined,
   },
+  findora: {
+    rpc: undefined,
+    key: undefined,
+  },
 };
 
 const TESTNET = {
@@ -174,6 +178,10 @@ const TESTNET = {
     rpc: "https://dev-bas.dev.overeality.io:8545",
     key: get_env_var("ETH_KEY"),
   },
+  findora: {
+    rpc: "https://prod-testnet.prod.findora.org:8545",
+    key: get_env_var("ETH_KEY"),
+  },
 };
 
 const DEVNET = {
@@ -251,6 +259,10 @@ const DEVNET = {
     key: undefined,
   },
   bas: {
+    rpc: undefined,
+    key: undefined,
+  },
+  findora: {
     rpc: undefined,
     key: undefined,
   },
