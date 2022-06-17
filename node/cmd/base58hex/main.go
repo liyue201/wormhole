@@ -39,9 +39,9 @@ func main() {
 
 	// bas
 	fmt.Println("bas")
-	ethAddressEmitter("0xC870f6e7887428f5CFA1eFAcC472F1b99a7138df")
-	ethAddressEmitter("0x708cE9C089db9485161b22510BD0f1192F4f41Aa")
-	ethAddressEmitter("0xc4a83CBC9e50833CEc98aE7191C756125Bf49dDC")
+	ethAddressEmitter("0xfbb8225485064bd58Aec183C25D0e143f8ee1a80")
+	ethAddressEmitter("0x1479913FDb0E3173B768f386f860a2b2FF372F92")
+	ethAddressEmitter("0x696edD7Dd1175915fBE3D2410B944aA915ef0F0A")
 
 	// findora
 	fmt.Println("findora")
