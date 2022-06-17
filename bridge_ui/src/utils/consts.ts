@@ -966,7 +966,7 @@ export const WOVR_ADDRESS =
     CLUSTER === "mainnet"
         ? "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c"
         : CLUSTER === "testnet"
-            ? "0xe665d0f9A83964226015ee9aCcCB60e637653cD9"
+            ? "0x03d45a129c4D0768d453dB865287d84a7be2FAf8"
             : "0xDDb64fE46a91D46ee29420539FC25FD07c5FEa3E";
 
 export const WOVR_DECIMALS = 18;
