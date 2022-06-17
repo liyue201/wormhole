@@ -345,7 +345,7 @@ guardian \
 --solanaContract GSJkPVPQdqaWayNBafwrDABfx2eetQnx6vudxr6WM8sg \
 --bscContract 0x2E686d5276008EEc8Fc1aeEbA9c04D3CF169Ab71 \
 --ethContract 0x6A1f2c5566Fb8BBbDffb1D05c2800971CF5996E9 \
---basContract 0xC870f6e7887428f5CFA1eFAcC472F1b99a7138df \
+--basContract 0xfbb8225485064bd58Aec183C25D0e143f8ee1a80 \
 --findoraContract 0x1fAbAf4F0386778b71B57C658460a4588b18D1C9
 ```
 
