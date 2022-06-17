@@ -76,14 +76,14 @@ ethTokenBridge=$(jq --raw-output '.chains."2".contracts.tokenBridgeEmitterAddres
 terraTokenBridge=$(jq --raw-output '.chains."3".contracts.tokenBridgeEmitterAddress' $addressesJson)
 bscTokenBridge=$(jq --raw-output '.chains."4".contracts.tokenBridgeEmitterAddress' $addressesJson)
 algoTokenBridge=$(jq --raw-output '.chains."8".contracts.tokenBridgeEmitterAddress' $addressesJson)
-basTokenBridge=$(jq --raw-output '.chains."18".contracts.tokenBridgeEmitterAddress' $addressesJson)
+basTokenBridge=$(jq --raw-output '.chains."20".contracts.tokenBridgeEmitterAddress' $addressesJson)
 findoraTokenBridge=$(jq --raw-output '.chains."19".contracts.tokenBridgeEmitterAddress' $addressesJson)
 
 solNFTBridge=$(jq --raw-output '.chains."1".contracts.nftBridgeEmitterAddress' $addressesJson)
 ethNFTBridge=$(jq --raw-output '.chains."2".contracts.nftBridgeEmitterAddress' $addressesJson)
 terraNFTBridge=$(jq --raw-output '.chains."3".contracts.nftBridgeEmitterAddress' $addressesJson)
 bscNFTBridge=$(jq --raw-output '.chains."4".contracts.nftBridgeEmitterAddress' $addressesJson)
-basNFTBridge=$(jq --raw-output '.chains."18".contracts.nftBridgeEmitterAddress' $addressesJson)
+basNFTBridge=$(jq --raw-output '.chains."20".contracts.nftBridgeEmitterAddress' $addressesJson)
 findoraNFTBridge=$(jq --raw-output '.chains."19".contracts.nftBridgeEmitterAddress' $addressesJson)
 
 

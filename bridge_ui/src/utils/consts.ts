@@ -719,21 +719,21 @@ export const BAS_BRIDGE_ADDRESS =
     CLUSTER === "mainnet"
         ? "0x98fdd30102cB8Dc8d62dD66E88D66Bf1C43c5A50"
         : CLUSTER === "testnet"
-            ? "0xC870f6e7887428f5CFA1eFAcC472F1b99a7138df"
+            ? "0xfbb8225485064bd58Aec183C25D0e143f8ee1a80"
             : "0x98fdd30102cB8Dc8d62dD66E88D66Bf1C43c5A50";
 
 export const BAS_TOKEN_BRIDGE_ADDRESS =
     CLUSTER === "mainnet"
         ? "0x42d81210CC5059d5Be68A3154E0DD5E58259176e"
         : CLUSTER === "testnet"
-            ? "0x708cE9C089db9485161b22510BD0f1192F4f41Aa"
+            ? "0x1479913FDb0E3173B768f386f860a2b2FF372F92"
             : "0x42d81210CC5059d5Be68A3154E0DD5E58259176e";
 
 export const BAS_NFT_BRIDGE_ADDRESS =
     CLUSTER === "mainnet"
         ? "0x1c4377588B5960Ed29268a1BcB32F87D7Ff9CdE6"
         : CLUSTER === "testnet"
-            ? "0xc4a83CBC9e50833CEc98aE7191C756125Bf49dDC"
+            ? "0x696edD7Dd1175915fBE3D2410B944aA915ef0F0A"
             : "0x1c4377588B5960Ed29268a1BcB32F87D7Ff9CdE6";
 
 
@@ -966,7 +966,7 @@ export const WOVR_ADDRESS =
     CLUSTER === "mainnet"
         ? "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c"
         : CLUSTER === "testnet"
-            ? "0xe665d0f9A83964226015ee9aCcCB60e637653cD9"
+            ? "0x03d45a129c4D0768d453dB865287d84a7be2FAf8"
             : "0xDDb64fE46a91D46ee29420539FC25FD07c5FEa3E";
 
 export const WOVR_DECIMALS = 18;

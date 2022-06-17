@@ -203,17 +203,17 @@
                 "tokenBridgeEmitterAddress": "8edf5b0e108c3a1a0a4b704cc89591f2ad8d50df24e991567e640ed720a94be2"
             }
         },
-        "18": {
+        "20": {
             "rpcUrlTilt": "http://eth-devnet2:8546",
             "rpcUrlLocal": "http://localhost:8546",
             "rpcPort": "8546",
             "contracts": {
-                "coreEmitterAddress": "000000000000000000000000c870f6e7887428f5cfa1efacc472f1b99a7138df",
-                "coreNativeAddress": "0xC870f6e7887428f5CFA1eFAcC472F1b99a7138df",
-                "tokenBridgeEmitterAddress": "000000000000000000000000708ce9c089db9485161b22510bd0f1192f4f41aa",
-                "tokenBridgeNativeAddress": "0x708cE9C089db9485161b22510BD0f1192F4f41Aa",
-                "nftBridgeEmitterAddress": "000000000000000000000000c4a83cbc9e50833cec98ae7191c756125bf49ddc",
-                "nftBridgeAddress": "0xc4a83CBC9e50833CEc98aE7191C756125Bf49dDC"
+                "coreEmitterAddress": "000000000000000000000000fbb8225485064bd58aec183c25d0e143f8ee1a80",
+                "coreNativeAddress": "0xfbb8225485064bd58Aec183C25D0e143f8ee1a80",
+                "tokenBridgeEmitterAddress": "0000000000000000000000001479913fdb0e3173b768f386f860a2b2ff372f92",
+                "tokenBridgeNativeAddress": "0x1479913FDb0E3173B768f386f860a2b2FF372F92",
+                "nftBridgeEmitterAddress": "000000000000000000000000696edd7dd1175915fbe3d2410b944aa915ef0f0a",
+                "nftBridgeAddress": "0x696edD7Dd1175915fBE3D2410B944aA915ef0F0A"
             }
         },
         "19": {

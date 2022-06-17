@@ -16,8 +16,8 @@ export const CHAINS = {
   celo: 14,
   near: 15,
   moonbeam: 16,
-  bas: 18,
   findora: 19,
+  bas: 20,
   ropsten: 10001,
 } as const;
 
@@ -250,9 +250,9 @@ const TESTNET = {
     nft_bridge: "0x2b048Da40f69c8dc386a56705915f8E966fe1eba",
   },
   bas: {
-    core: "0xC870f6e7887428f5CFA1eFAcC472F1b99a7138df",
-    token_bridge: "0x708cE9C089db9485161b22510BD0f1192F4f41Aa",
-    nft_bridge: "0xc4a83CBC9e50833CEc98aE7191C756125Bf49dDC",
+    core: "0xfbb8225485064bd58Aec183C25D0e143f8ee1a80",
+    token_bridge: "0x1479913FDb0E3173B768f386f860a2b2FF372F92",
+    nft_bridge: "0x696edD7Dd1175915fBE3D2410B944aA915ef0F0A",
   },
   findora: {
     core: "0x1fAbAf4F0386778b71B57C658460a4588b18D1C9",
