@@ -203,7 +203,7 @@
                 "tokenBridgeEmitterAddress": "8edf5b0e108c3a1a0a4b704cc89591f2ad8d50df24e991567e640ed720a94be2"
             }
         },
-        "18": {
+        "20": {
             "rpcUrlTilt": "http://eth-devnet2:8546",
             "rpcUrlLocal": "http://localhost:8546",
             "rpcPort": "8546",
