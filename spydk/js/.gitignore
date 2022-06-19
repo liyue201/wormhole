@@ -23,11 +23,7 @@ yarn-debug.log*
 yarn-error.log*
 
 # ethereum contracts
-/contracts
-/src/ethers-contracts
 
 # tsproto output
-/src/proto
 
 # build
-/lib
